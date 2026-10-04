@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ФСНСТ НаУКМА{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'faculty/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo"><strong>ФСНСТ НаУКМА</strong></div>
+        <nav class="main-nav">
+            <a href="{% url 'faculty:home' %}">Головна</a>
+            <a href="{% url 'faculty:department_list' %}">Кафедри</a>
+            <a href="{% url 'faculty:program_list' %}">Спеціальності</a>
+        </nav>
+    </header>
+    
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

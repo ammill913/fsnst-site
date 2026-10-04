@@ -1,0 +1,22 @@
+{% extends "faculty/base.html" %}
+
+{% block title %}Головна - ФСНСТ НаУКМА{% endblock %}
+{% block content %}
+    {% if content %}
+        <div class="card">
+            <h1 class="page-title">{{ content.title }}</h1>
+            
+            <h3 class="section-title">Про факультет</h3>
+            <p class="text-block">{{ content.about_text }}</p>
+            
+            <hr class="divider">
+            
+            <h3 class="section-title">Контакти деканату</h3>
+            <p class="text-block">{{ content.contacts }}</p>
+        </div>
+    {% else %}
+        <div class="card">
+            <h1 class="page-title">Факультет соціальних наук та соціальних технологій</h1>
+        </div>
+    {% endif %}
+{% endblock %}
