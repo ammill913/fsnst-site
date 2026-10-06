@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Department(models.Model):
     name = models.CharField(max_length=200)
@@ -51,3 +52,18 @@ class HomeContent(models.Model):
 
     def __str__(self):
         return self.title
+
+class ExchangeProgram(models.Model):
+    university = models.CharField("Університет", max_length=200)
+    country = models.CharField("Країна", max_length=100, default="")
+    languages = models.CharField("Мови навчання", max_length=150)
+    places = models.PositiveSmallIntegerField("Місця")
+    deadline = models.DateField("Дедлайн")
+    description = models.TextField("Опис")
+
+    def __str__(self):
+        return self.university
+
+    @property
+    def is_active(self):
+        return self.deadline >= timezone.now().date()
