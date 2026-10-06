@@ -1,35 +1,30 @@
 {% extends "faculty/base.html" %}
-
 {% block title %}{{ department.name }} - ФСНСТ{% endblock %}
 {% block content %}
-    <div class="card">
-        <h1 class="page-title">{{ department.name }}</h1>
-        <p class="meta-info" style="font-size: 1.1rem;"><strong>Завідувач кафедри:</strong> {{ department.head_name }}</p>
-        
-        <hr class="divider">
-        
-        <h3>Випускові спеціальності</h3>
-        <ul class="styled-list">
-            {% for p in department.programs.all %}
-                <li>
-                    {% if p.level %}<strong>[{{ p.get_level_display }}]</strong>{% endif %}
-                    <a href="{% url 'faculty:program_detail' p.id %}" class="link">{{ p.code }} {{ p.name }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-        
-        <hr class="divider">
-        
-        <h3>Викладацький склад</h3>
-        <ul class="styled-list">
-            {% for teacher in department.teachers.all %}
-                <li>
-                    <strong>{{ teacher.name }}</strong> - {{ teacher.position }}, {{ teacher.degree }}
-                </li>
-            {% endfor %}
-        </ul>
-        
-        <br><br>
-        <a href="{% url 'faculty:department_list' %}" class="btn">Назад</a>
-    </div>
+  <div class="card">
+    <h1 class="page-title">{{ department.name }}</h1>
+    <p class="meta-info" style="font-size: 1.1rem;"><strong>Завідувач кафедри:</strong> {{ department.head_name }}</p>
+    <hr class="divider">
+    <h3>Випускові спеціальності</h3>
+    <ul class="styled-list">
+      {% for p in department.programs.all %}
+        <li>
+          {% if p.level %}<strong>[{{ p.get_level_display }}]</strong>{% endif %}
+          <a href="{% url 'faculty:program_detail' p.id %}" class="link">{{ p.code }} {{ p.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <hr class="divider">
+    <h3>Викладацький склад</h3>
+    <ul class="styled-list">
+      {% for teacher in department.teachers.all %}
+        <li>
+          <strong>{{ teacher.name }}</strong> - {{ teacher.position }}, {{ teacher.degree }}
+        </li>
+      {% endfor %}
+    </ul>
+    <br>
+    <br>
+    <a href="{% url 'faculty:department_list' %}" class="btn">Назад</a>
+  </div>
 {% endblock %}

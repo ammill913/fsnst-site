@@ -1,25 +1,19 @@
 {% extends "faculty/base.html" %}
-
 {% block title %}Спеціальності - ФСНСТ{% endblock %}
 {% block content %}
-    <h1 class="page-title">Освітні програми та спеціальності</h1>
-    
-    <div class="card-grid">
-        {% for program in programs %}
-            <div class="card">
-                <h2 class="card-title">
-                    <a href="{% url 'faculty:program_detail' program.id %}" class="link">
-                        {{ program.code }} {{ program.name }}
-                    </a>
-                </h2>
-                
-                <span class="badge">{{ program.get_level_display }}</span>
-                
-                <p>{{ program.description|truncatewords:50 }}</p>
-                <hr class="divider" style="margin: 1rem 0;">
-                <p class="meta-info"><strong>Випускова кафедра:</strong> {{ program.department.name }}</p>
-                <p class="meta-info"><strong>Координатор набору:</strong> {{ program.coordinator_name }}, {{ program.coordinator_contact }}</p>
-            </div>
-        {% endfor %}
-    </div>
+  <h1 class="page-title">Освітні програми та спеціальності</h1>
+  <div class="card-grid">
+    {% for program in programs %}
+      <div class="card">
+        <h2 class="card-title">
+          <a href="{% url 'faculty:program_detail' program.id %}" class="link">{{ program.code }} {{ program.name }}</a>
+        </h2>
+        <span class="badge">{{ program.get_level_display }}</span>
+        <p>{{ program.description|truncatewords:50 }}</p>
+        <hr class="divider" style="margin: 1rem 0;">
+        <p class="meta-info"><strong>Випускова кафедра:</strong> {{ program.department.name }}</p>
+        <p class="meta-info"><strong>Координатор набору:</strong> {{ program.coordinator_name }}, {{ program.coordinator_contact }}</p>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}

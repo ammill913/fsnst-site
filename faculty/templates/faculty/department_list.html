@@ -1,26 +1,25 @@
 {% extends "faculty/base.html" %}
-
 {% block title %}Кафедри - ФСНСТ{% endblock %}
 {% block content %}
-    <h1 class="page-title">Кафедри факультету</h1>
-    
-    <div class="card-grid">
-        {% for dept in departments %}
-            <div class="card">
-                <h2 class="card-title">
-                    <a href="{% url 'faculty:department_detail' dept.id %}" class="link">{{ dept.name }}</a>
-                </h2>
-                <p class="meta-info"><strong>Завідувач:</strong> {{ dept.head_name }}</p>
-                <hr class="divider" style="margin: 1rem 0;">
-                <p><strong>Випускові спеціальності:</strong></p>
-                <ul class="styled-list">
-                    {% for p in dept.programs.all %}
-                        <li>
-                            <a href="{% url 'faculty:program_detail' p.id %}" class="link">{{ p.code }} {{ p.name }} ({{p.get_level_display}})</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endfor %}
-    </div>
+  <h1 class="page-title">Кафедри факультету</h1>
+  <div class="card-grid">
+    {% for dept in departments %}
+      <div class="card">
+        <h2 class="card-title">
+          <a href="{% url 'faculty:department_detail' dept.id %}" class="link">{{ dept.name }}</a>
+        </h2>
+        <p class="meta-info"><strong>Завідувач:</strong> {{ dept.head_name }}</p>
+        <hr class="divider" style="margin: 1rem 0;">
+        <p><strong>Випускові спеціальності:</strong></p>
+        <ul class="styled-list">
+          {% for p in dept.programs.all %}
+            <li>
+              <a href="{% url 'faculty:program_detail' p.id %}"
+                 class="link">{{ p.code }} {{ p.name }} ({{ p.get_level_display }})</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}
