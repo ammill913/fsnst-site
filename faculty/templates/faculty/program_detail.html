@@ -4,10 +4,7 @@
 {% block content %}
     <div class="card">
         <h1 class="page-title">{{ program.code }} {{ program.name }}</h1>
-        
-        {% if program.level %}
-            <span class="badge">{{ program.get_level_display }}</span>
-        {% endif %}
+        <span class="badge">{{ program.get_level_display }}</span>
 
         <p class="meta-info"><strong>Випускова кафедра:</strong> 
             <a href="{% url 'faculty:department_detail' program.department.id %}" class="link">{{ program.department.name }}</a>
