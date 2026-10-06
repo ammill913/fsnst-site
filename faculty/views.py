@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Department, HomeContent, Program
+from .models import Department, HomeContent, Program, ExchangeProgram
 
 def home(request):
     content = HomeContent.objects.first()
@@ -23,3 +23,7 @@ def program_detail(request, program_id):
 def department_detail(request, department_id):
     department = Department.objects.prefetch_related("programs", "teachers").get(id=department_id)
     return render(request, "faculty/department_detail.html", {"department": department})
+
+def exchange_list(request):
+    programs = ExchangeProgram.objects.all()
+    return render(request, "faculty/exchange_list.html", {"programs": programs})
