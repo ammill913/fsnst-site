@@ -1,0 +1,27 @@
+{% extends "faculty/base.html" %}
+{% block title %}{{ program.name }} - ФСНСТ{% endblock %}
+{% block content %}
+  <div class="card">
+    <h1 class="page-title">{{ program.code }} {{ program.name }}</h1>
+    <span class="badge">{{ program.get_level_display }}</span>
+    <p class="meta-info">
+      <strong>Випускова кафедра:</strong>
+      <a href="{% url 'faculty:department_detail' program.department.id %}"
+         class="link">{{ program.department.name }}</a>
+    </p>
+    <p class="meta-info"><strong>Координатор набору:</strong> {{ program.coordinator_name }} ({{ program.coordinator_contact }})</p>
+    <hr class="divider">
+    <h3>Опис програми</h3>
+    <p class="text-block">{{ program.description }}</p>
+    <hr class="divider">
+    <h3>Дисципліни, що вивчаються</h3>
+    <ul class="styled-list">
+      {% for d in disciplines %}
+        <li>{{ d }}</li>
+      {% endfor %}
+    </ul>
+    <br>
+    <br>
+    <a href="{% url 'faculty:program_list' %}" class="btn">Назад</a>
+  </div>
+{% endblock %}
